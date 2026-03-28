@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363842488352",
+    "project_id": "devsync-c618f",
+    "storage_bucket": "devsync-c618f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363842488352:android:cf0a1ab39aa2356a265445",
+        "android_client_info": {
+          "package_name": "es.iescarrillo.devsync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGuJmUjrut0Iva7gpnvZqtpk7QSRom96o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

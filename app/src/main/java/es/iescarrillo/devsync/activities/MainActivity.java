@@ -1,4 +1,4 @@
-package es.iescarrillo.devsync;
+package es.iescarrillo.devsync.activities;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import es.iescarrillo.devsync.R;
 
 public class MainActivity extends AppCompatActivity {
 

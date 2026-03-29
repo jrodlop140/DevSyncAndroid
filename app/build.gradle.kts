@@ -50,4 +50,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     // Módulo Firebase Real Time
     implementation("com.google.firebase:firebase-database")
+    // Módulo Firebase Authentication
+    implementation("com.google.firebase:firebase-auth")
+// Servicios de Google
+    implementation("com.google.android.gms:play-services auth")
 }

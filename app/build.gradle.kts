@@ -52,6 +52,4 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     // Módulo Firebase Authentication
     implementation("com.google.firebase:firebase-auth")
-// Servicios de Google
-    implementation("com.google.android.gms:play-services auth")
 }

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "363842488352",
+    "firebase_url": "https://devsync-c618f-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "devsync-c618f",
     "storage_bucket": "devsync-c618f.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "es.iescarrillo.devsync"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "363842488352-c7arrc8ladqhm2c3dof44qogtvl5it39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.iescarrillo.devsync",
+            "certificate_hash": "1a703c1ebf72f7004045113fb2e4a6d7b93ac363"
+          }
+        },
+        {
+          "client_id": "363842488352-ju20tppai6kbcub5iu50k18905avsjql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCGuJmUjrut0Iva7gpnvZqtpk7QSRom96o"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363842488352-ju20tppai6kbcub5iu50k18905avsjql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

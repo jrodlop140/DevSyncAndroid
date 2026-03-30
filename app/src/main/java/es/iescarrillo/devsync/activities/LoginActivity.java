@@ -13,7 +13,7 @@ import es.iescarrillo.devsync.R;
 import es.iescarrillo.devsync.services.AuthService;
 
 /**
- * Actividad provisional de inicio de sesión.
+ * Actividad de inicio de sesión.
  * Permite comprobar si el usuario se autentica correctamente en Firebase.
  */
 public class LoginActivity extends AppCompatActivity {
@@ -25,11 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     // Servicios //
     private AuthService authService;
 
-    /**
-     * Método que se ejecuta al crear la actividad.
-     *
-     * @param savedInstanceState Estado previo de la actividad.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Intenta iniciar sesión con email y contraseña.
+     * Método para iniciar sesión con email y contraseña.
      */
     private void loginUser() {
         String email = etEmailLogin.getText().toString().trim();
@@ -84,10 +79,16 @@ public class LoginActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_LONG).show();
 
-                // Provisional: solo para comprobar que funciona
-                // Luego aquí iría HomeActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
             } else {
-                Toast.makeText(LoginActivity.this, "Correo o contraseña incorrectos", Toast.LENGTH_LONG).show();
+                String error = task.getException() != null
+                        ? task.getException().getMessage()
+                        : "Correo o contraseña incorrectos";
+
+                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
             }
         });
     }

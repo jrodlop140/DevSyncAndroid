@@ -13,6 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import es.iescarrillo.devsync.R;
 import es.iescarrillo.devsync.fragments.HomeFragment;
+import es.iescarrillo.devsync.fragments.ProfileFragment;
+import es.iescarrillo.devsync.fragments.ProjectsFragment;
+import es.iescarrillo.devsync.fragments.RequestsFragment;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
@@ -47,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
+            }
+
+            if (item.getItemId() == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            }
+
+            if (item.getItemId() == R.id.nav_projects) {
+                selectedFragment = new ProjectsFragment();
+            }
+
+            if (item.getItemId() == R.id.nav_requests) {
+                selectedFragment = new RequestsFragment();
             }
 
             if (selectedFragment != null) {

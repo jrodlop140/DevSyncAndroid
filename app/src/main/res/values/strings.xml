@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">DevSync</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_profile_fragment">Hello profile fragment</string>
+    <string name="hello_projects_fragment">Hello projects fragment</string>
+    <string name="hello_requests_fragment">Hello requests fragment</string>
+    <string name="hello_home_fragment">Hello home fragment</string>
 </resources>

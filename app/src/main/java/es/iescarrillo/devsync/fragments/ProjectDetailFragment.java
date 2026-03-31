@@ -5,29 +5,39 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import es.iescarrillo.devsync.R;
+import es.iescarrillo.devsync.enums.RequestState;
 import es.iescarrillo.devsync.models.Project;
+import es.iescarrillo.devsync.models.Request;
 import es.iescarrillo.devsync.services.ProjectService;
+import es.iescarrillo.devsync.services.RequestService;
 
 /**
  * Fragmento encargado de mostrar los detalles de un proyecto.
  */
-
 public class ProjectDetailFragment extends Fragment {
 
     // Componentes de la interfaz
     private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies;
+    private Button btnJoinProject;
+
+    // Servicios
     private ProjectService projectService;
+    private RequestService requestService;
+
+    // Datos
     private String projectId;
 
     public ProjectDetailFragment() {
@@ -42,6 +52,7 @@ public class ProjectDetailFragment extends Fragment {
         initializeComponents(view);
         initializeServices();
         getArgumentsData();
+        initializeListeners();
         loadProject();
 
         return view;
@@ -58,22 +69,79 @@ public class ProjectDetailFragment extends Fragment {
         tvProjectStatus = view.findViewById(R.id.tvDetailProjectStatus);
         tvProjectCreator = view.findViewById(R.id.tvDetailProjectCreator);
         tvProjectTechnologies = view.findViewById(R.id.tvDetailProjectTechnologies);
+        btnJoinProject = view.findViewById(R.id.btnJoinProject);
     }
 
     /**
-     * Inicializa los servicios y estructuras de datos necesarias.
+     * Inicializa los servicios necesarios.
      */
     private void initializeServices() {
         projectService = new ProjectService();
+        requestService = new RequestService();
     }
 
     /**
-     * Obtiene los datos pasados por argumentos.
+     * Inicializa los listeners de la interfaz.
+     */
+    private void initializeListeners() {
+        btnJoinProject.setOnClickListener(v -> checkIfRequestExistsAndCreate());
+    }
+
+    /**
+     * Obtiene los datos recibidos por argumentos.
      */
     private void getArgumentsData() {
         if (getArguments() != null) {
             projectId = getArguments().getString("projectId");
         }
+    }
+
+    /**
+     * Comprueba si ya existe una solicitud para el usuario actual y el proyecto.
+     * Si no existe, crea una nueva.
+     */
+    private void checkIfRequestExistsAndCreate() {
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        requestService.getRequestByDeveloperAndProject(currentUserId, projectId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Toast.makeText(getContext(),
+                                    "Ya has enviado una solicitud para este proyecto",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            createJoinRequest(currentUserId);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(),
+                                "Error al verificar la solicitud",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    /**
+     * Crea una solicitud de unión al proyecto.
+     *
+     * @param currentUserId Id del usuario actual.
+     */
+    private void createJoinRequest(String currentUserId) {
+        Request request = new Request();
+        request.setDeveloperId(currentUserId);
+        request.setProjectId(projectId);
+        request.setState(RequestState.PENDING);
+        request.setRequestDate(String.valueOf(System.currentTimeMillis()));
+        request.setCreatedAt(System.currentTimeMillis());
+
+        requestService.saveRequest(request);
+
+        Toast.makeText(getContext(), "Solicitud enviada", Toast.LENGTH_LONG).show();
+        btnJoinProject.setEnabled(false);
     }
 
     /**
@@ -105,6 +173,23 @@ public class ProjectDetailFragment extends Fragment {
 
                     if (project.getTechnologies() != null && !project.getTechnologies().isEmpty()) {
                         tvProjectTechnologies.setText(TextUtils.join(", ", project.getTechnologies()));
+                    } else {
+                        tvProjectTechnologies.setText("");
+                    }
+
+                    String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    // Comprobamos si el usuario actual es el creador o un participante
+                    boolean isCreator = currentUserId.equals(project.getCreator());
+                    boolean isParticipant = project.getParticipants() != null
+                            && project.getParticipants().containsKey(currentUserId);
+
+                    // Si el usuario es el creador o un participante, ocultamos el botón
+                    if (isCreator || isParticipant) {
+                        btnJoinProject.setVisibility(View.GONE);
+                    } else {
+                        btnJoinProject.setVisibility(View.VISIBLE);
+                        checkIfRequestAlreadyExists(currentUserId);
                     }
 
                 } else {
@@ -117,5 +202,28 @@ public class ProjectDetailFragment extends Fragment {
                 Toast.makeText(getContext(), "Error al cargar el proyecto", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Comprueba si el usuario actual ya tiene una solicitud enviada para este proyecto
+     * y deshabilita el botón si ya existe.
+     *
+     * @param currentUserId Id del usuario actual.
+     */
+    private void checkIfRequestAlreadyExists(String currentUserId) {
+        requestService.getRequestByDeveloperAndProject(currentUserId, projectId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        btnJoinProject.setEnabled(!snapshot.exists());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(),
+                                "Error al comprobar solicitud existente",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

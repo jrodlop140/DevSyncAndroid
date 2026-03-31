@@ -6,4 +6,9 @@
     <string name="hello_projects_fragment">Hello projects fragment</string>
     <string name="hello_requests_fragment">Hello requests fragment</string>
     <string name="hello_home_fragment">Hello home fragment</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="state">State</string>
+    <string name="creator">Creator</string>
+    <string name="technologies">Technologies</string>
 </resources>

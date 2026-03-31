@@ -16,9 +16,15 @@ import es.iescarrillo.devsync.models.Project;
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     private List<Project> projectList;
+    private OnProjectClickListener listener;
 
-    public ProjectAdapter(List<Project> projectList) {
+    public interface OnProjectClickListener {
+        void onProjectClick(Project project);
+    }
+
+    public ProjectAdapter(List<Project> projectList, OnProjectClickListener listener) {
         this.projectList = projectList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -41,6 +47,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         } else {
             holder.tvProjectStatus.setText("");
         }
+
+        holder.itemView.setOnClickListener(v -> listener.onProjectClick(project));
     }
 
     @Override

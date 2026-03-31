@@ -72,7 +72,7 @@ public class ProjectsFragment extends Fragment {
      * Configura el RecyclerView y su adaptador.
      */
     private void initializeRecyclerView() {
-        projectAdapter = new ProjectAdapter(projectList);
+        projectAdapter = new ProjectAdapter(projectList, this::openProjectDetail);
         rvProjects.setLayoutManager(new LinearLayoutManager(getContext()));
         rvProjects.setAdapter(projectAdapter);
     }
@@ -103,5 +103,24 @@ public class ProjectsFragment extends Fragment {
                 Toast.makeText(getContext(), "Error al cargar proyectos", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Abre el fragmento de detalles del proyecto.
+     *
+     * @param project Proyecto seleccionado.
+     */
+    private void openProjectDetail(Project project) {
+        ProjectDetailFragment detailFragment = new ProjectDetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("projectId", project.getId());
+        detailFragment.setArguments(bundle);
+
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, detailFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

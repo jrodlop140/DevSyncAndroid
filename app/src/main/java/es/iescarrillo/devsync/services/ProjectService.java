@@ -25,4 +25,13 @@ public class ProjectService {
     public DatabaseReference getAllProjects() {
         return databaseReference;
     }
+
+    /**
+     * Obtiene una referencia a un proyecto específico en la base de datos.
+     * @param projectId ID del proyecto.
+     * @return DatabaseReference al proyecto.
+     */
+    public DatabaseReference getProjectById(String projectId) {
+        return databaseReference.child(projectId);
+    }
 }

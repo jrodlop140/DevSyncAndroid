@@ -13,5 +13,8 @@
     <string name="technologies">Technologies</string>
     <string name="participants_0">Participants: 0</string>
     <string name="participants_list">Participants list</string>
-    <string name="solicitar_unirse">Solicitar unirse</string>
+    <string name="Request_joining">Request joining</string>
+    <string name="task_title">Task title</string>
+    <string name="task_description">Task description</string>
+    <string name="pending">PENDING</string>
 </resources>

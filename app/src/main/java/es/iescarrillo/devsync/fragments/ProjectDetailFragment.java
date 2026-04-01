@@ -21,8 +21,10 @@ import es.iescarrillo.devsync.R;
 import es.iescarrillo.devsync.enums.RequestState;
 import es.iescarrillo.devsync.models.Project;
 import es.iescarrillo.devsync.models.Request;
+import es.iescarrillo.devsync.models.User;
 import es.iescarrillo.devsync.services.ProjectService;
 import es.iescarrillo.devsync.services.RequestService;
+import es.iescarrillo.devsync.services.UserService;
 
 /**
  * Fragmento encargado de mostrar los detalles de un proyecto.
@@ -30,12 +32,13 @@ import es.iescarrillo.devsync.services.RequestService;
 public class ProjectDetailFragment extends Fragment {
 
     // Componentes de la interfaz
-    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies;
+    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies, tvProjectParticipants, tvProjectParticipantsNames;
     private Button btnJoinProject;
 
     // Servicios
     private ProjectService projectService;
     private RequestService requestService;
+    private UserService userService;
 
     // Datos
     private String projectId;
@@ -70,6 +73,8 @@ public class ProjectDetailFragment extends Fragment {
         tvProjectCreator = view.findViewById(R.id.tvDetailProjectCreator);
         tvProjectTechnologies = view.findViewById(R.id.tvDetailProjectTechnologies);
         btnJoinProject = view.findViewById(R.id.btnJoinProject);
+        tvProjectParticipants = view.findViewById(R.id.tvDetailProjectParticipants);
+        tvProjectParticipantsNames = view.findViewById(R.id.tvDetailProjectParticipantsNames);
     }
 
     /**
@@ -78,6 +83,7 @@ public class ProjectDetailFragment extends Fragment {
     private void initializeServices() {
         projectService = new ProjectService();
         requestService = new RequestService();
+        userService = new UserService();
     }
 
     /**
@@ -144,6 +150,7 @@ public class ProjectDetailFragment extends Fragment {
         btnJoinProject.setEnabled(false);
     }
 
+
     /**
      * Carga los detalles del proyecto desde Firebase Realtime Database.
      */
@@ -192,6 +199,14 @@ public class ProjectDetailFragment extends Fragment {
                         checkIfRequestAlreadyExists(currentUserId);
                     }
 
+                    int totalParticipants = 0;
+                    if (project.getParticipants() != null) {
+                        totalParticipants = project.getParticipants().size();
+                    }
+
+                    tvProjectParticipants.setText("Participants: " + totalParticipants);
+
+                    loadParticipantNames(project);
                 } else {
                     Toast.makeText(getContext(), "Proyecto no encontrado", Toast.LENGTH_LONG).show();
                 }
@@ -200,6 +215,50 @@ public class ProjectDetailFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Error al cargar el proyecto", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    /**
+     * Carga los nombres de los participantes del proyecto.
+     *
+     * @param project Proyecto cuyos participantes se desean mostrar.
+     */
+    private void loadParticipantNames(Project project) {
+        if (project.getParticipants() == null || project.getParticipants().isEmpty()) {
+            tvProjectParticipantsNames.setText("Sin participantes");
+            return;
+        }
+
+        userService.getAllUsers().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                StringBuilder participantsNames = new StringBuilder();
+
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String userId = data.getKey();
+
+                    if (project.getParticipants().containsKey(userId)) {
+                        User user = data.getValue(User.class);
+
+                        if (user != null && user.getName() != null) {
+                            participantsNames.append("• ")
+                                    .append(user.getName())
+                                    .append("\n");
+                        }
+                    }
+                }
+
+                if (participantsNames.length() > 0) {
+                    tvProjectParticipantsNames.setText(participantsNames.toString().trim());
+                } else {
+                    tvProjectParticipantsNames.setText("Sin participantes");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Error al cargar participantes", Toast.LENGTH_LONG).show();
             }
         });
     }

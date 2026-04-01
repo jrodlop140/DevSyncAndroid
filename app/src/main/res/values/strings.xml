@@ -11,4 +11,7 @@
     <string name="state">State</string>
     <string name="creator">Creator</string>
     <string name="technologies">Technologies</string>
+    <string name="participants_0">Participants: 0</string>
+    <string name="participants_list">Participants list</string>
+    <string name="solicitar_unirse">Solicitar unirse</string>
 </resources>

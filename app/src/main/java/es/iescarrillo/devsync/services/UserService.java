@@ -49,4 +49,13 @@ public class UserService {
     public void deleteUser(String userId, OnCompleteListener<Void> listener) {
         databaseReference.child(userId).removeValue().addOnCompleteListener(listener);
     }
+
+    /**
+     * Obtiene una referencia a todos los usuarios de la base de datos.
+     *
+     * @return Referencia a todos los usuarios.
+     */
+    public DatabaseReference getAllUsers() {
+        return databaseReference;
+    }
 }

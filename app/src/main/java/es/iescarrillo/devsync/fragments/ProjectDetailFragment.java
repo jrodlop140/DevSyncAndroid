@@ -106,7 +106,8 @@ public class ProjectDetailFragment extends Fragment {
      * Inicializa el RecyclerView de tareas del proyecto.
      */
     private void initializeTasksRecyclerView() {
-        taskAdapter = new TaskAdapter(taskList);
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        taskAdapter = new TaskAdapter(taskList, currentUserId);
         rvProjectTasks.setLayoutManager(new LinearLayoutManager(getContext()));
         rvProjectTasks.setAdapter(taskAdapter);
     }
@@ -180,7 +181,7 @@ public class ProjectDetailFragment extends Fragment {
      * Carga las tareas asociadas al proyecto actual.
      */
     private void loadProjectTasks() {
-        taskService.getAllTasks().addListenerForSingleValueEvent(new ValueEventListener() {
+        taskService.getAllTasks().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 taskList.clear();

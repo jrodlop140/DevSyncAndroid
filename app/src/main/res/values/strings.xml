@@ -17,4 +17,5 @@
     <string name="task_title">Task title</string>
     <string name="task_description">Task description</string>
     <string name="pending">PENDING</string>
+    <string name="action">Action</string>
 </resources>

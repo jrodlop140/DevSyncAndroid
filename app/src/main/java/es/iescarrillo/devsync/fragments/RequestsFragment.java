@@ -89,7 +89,7 @@ public class RequestsFragment extends Fragment {
      */
     private void loadRequests() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            Toast.makeText(getContext(), "Sesión no válida", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Invalid session", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -118,7 +118,7 @@ public class RequestsFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error al cargar solicitudes", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -135,7 +135,7 @@ public class RequestsFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Project project = snapshot.getValue(Project.class);
 
-                        String projectName = "Proyecto desconocido";
+                        String projectName = "Unknown project";
                         if (project != null && project.getName() != null) {
                             projectName = project.getName();
                         }
@@ -152,7 +152,7 @@ public class RequestsFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error al cargar proyecto", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
                     }
                 });
     }

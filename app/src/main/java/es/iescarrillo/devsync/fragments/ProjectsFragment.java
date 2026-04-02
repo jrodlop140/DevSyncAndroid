@@ -100,7 +100,7 @@ public class ProjectsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar proyectos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading projects", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -142,7 +142,7 @@ public class ProjectDetailFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             Toast.makeText(getContext(),
-                                    "Ya has enviado una solicitud para este proyecto",
+                                    "You have already sent a request for this project",
                                     Toast.LENGTH_LONG).show();
                         } else {
                             createJoinRequest(currentUserId);
@@ -152,7 +152,7 @@ public class ProjectDetailFragment extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(getContext(),
-                                "Error al verificar la solicitud",
+                                "Error checking the request",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
@@ -173,7 +173,7 @@ public class ProjectDetailFragment extends Fragment {
 
         requestService.saveRequest(request);
 
-        Toast.makeText(getContext(), "Solicitud enviada", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Request sent", Toast.LENGTH_LONG).show();
         btnJoinProject.setEnabled(false);
     }
 
@@ -200,7 +200,7 @@ public class ProjectDetailFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar tareas", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -210,7 +210,7 @@ public class ProjectDetailFragment extends Fragment {
      */
     private void loadProject() {
         if (TextUtils.isEmpty(projectId)) {
-            Toast.makeText(getContext(), "Proyecto no válido", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Invalid project", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -265,13 +265,13 @@ public class ProjectDetailFragment extends Fragment {
                     // Cargamos las tareas del proyecto
                     loadProjectTasks();
                 } else {
-                    Toast.makeText(getContext(), "Proyecto no encontrado", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Project not found", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar el proyecto", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -283,7 +283,7 @@ public class ProjectDetailFragment extends Fragment {
      */
     private void loadParticipantNames(Project project) {
         if (project.getParticipants() == null || project.getParticipants().isEmpty()) {
-            tvProjectParticipantsNames.setText("Sin participantes");
+            tvProjectParticipantsNames.setText("No participants");
             return;
         }
 
@@ -309,13 +309,13 @@ public class ProjectDetailFragment extends Fragment {
                 if (participantsNames.length() > 0) {
                     tvProjectParticipantsNames.setText(participantsNames.toString().trim());
                 } else {
-                    tvProjectParticipantsNames.setText("Sin participantes");
+                    tvProjectParticipantsNames.setText("No participants");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar participantes", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading participants", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -337,7 +337,7 @@ public class ProjectDetailFragment extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(getContext(),
-                                "Error al comprobar solicitud existente",
+                                "Error checking existing request",
                                 Toast.LENGTH_LONG).show();
                     }
                 });

@@ -11,7 +11,7 @@
         android:id="@+id/imageViewSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Imagen con el logo de la app"
+        android:contentDescription="Image with the app logo"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

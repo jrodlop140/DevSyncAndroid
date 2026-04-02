@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (saveTask.isSuccessful()) {
 
                         Toast.makeText(RegisterActivity.this,
-                                "Usuario registrado correctamente",
+                                "User registered successfully",
                                 Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         String error = saveTask.getException() != null
                                 ? saveTask.getException().getMessage()
-                                : "Error al guardar en base de datos";
+                                : "Error saving to database";
 
                         Toast.makeText(RegisterActivity.this,
                                 error,
@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String error = task.getException() != null
                         ? task.getException().getMessage()
-                        : "Error en el registro";
+                        : "Registration error";
 
                 Toast.makeText(RegisterActivity.this,
                         error,
@@ -138,17 +138,17 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
                 TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show();
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
             return false;
         }
 
         if (password.length() < 6) {
-            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_LONG).show();
             return false;
         }
 

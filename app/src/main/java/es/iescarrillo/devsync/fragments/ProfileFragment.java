@@ -172,7 +172,7 @@ public class ProfileFragment extends Fragment {
      */
     private void loadUserData() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            showToastSafely("Sesión no válida", Toast.LENGTH_LONG);
+            showToastSafely("Invalid session", Toast.LENGTH_LONG);
             return;
         }
 
@@ -204,13 +204,13 @@ public class ProfileFragment extends Fragment {
                     }
 
                 } else {
-                    showToastSafely("Usuario no encontrado", Toast.LENGTH_LONG);
+                    showToastSafely("User not found", Toast.LENGTH_LONG);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                showToastSafely("Error al cargar usuario", Toast.LENGTH_LONG);
+                showToastSafely("Error loading user", Toast.LENGTH_LONG);
             }
         });
     }
@@ -240,9 +240,9 @@ public class ProfileFragment extends Fragment {
 
         userService.updateUser(currentUser, task -> {
             if (task.isSuccessful()) {
-                showToastSafely("Skills actualizadas", Toast.LENGTH_SHORT);
+                showToastSafely("Skills updated", Toast.LENGTH_SHORT);
             } else {
-                showToastSafely("Error al guardar skills", Toast.LENGTH_LONG);
+                showToastSafely("Error saving skills", Toast.LENGTH_LONG);
             }
         });
     }
@@ -257,7 +257,7 @@ public class ProfileFragment extends Fragment {
         }
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            showToastSafely("Sesión no válida", Toast.LENGTH_LONG);
+            showToastSafely("Invalid session", Toast.LENGTH_LONG);
             return;
         }
 
@@ -275,16 +275,16 @@ public class ProfileFragment extends Fragment {
                         setUploadingState(false);
 
                         if (task.isSuccessful()) {
-                            showToastSafely("Foto actualizada", Toast.LENGTH_SHORT);
+                            showToastSafely("Photo updated", Toast.LENGTH_SHORT);
                         } else {
-                            showToastSafely("Error al guardar la foto", Toast.LENGTH_LONG);
+                            showToastSafely("Error saving photo", Toast.LENGTH_LONG);
                         }
                     });
                 },
                 e -> {
                     // Restaurar la interfaz si ocurre un error durante la subida
                     setUploadingState(false);
-                    showToastSafely("Error al subir foto", Toast.LENGTH_LONG);
+                    showToastSafely("Error uploading photo", Toast.LENGTH_LONG);
                 }
         );
     }

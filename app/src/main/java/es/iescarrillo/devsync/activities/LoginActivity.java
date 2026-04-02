@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         authService.login(email, password, task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 String error = task.getException() != null
                         ? task.getException().getMessage()
-                        : "Correo o contraseña incorrectos";
+                        : "Incorrect email or password";
 
                 Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
             }
@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean validateFields(String email, String password) {
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show();
             return false;
         }
 

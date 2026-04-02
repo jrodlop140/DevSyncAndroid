@@ -13,7 +13,7 @@
     <string name="technologies">Technologies</string>
     <string name="participants_0">Participants: 0</string>
     <string name="participants_list">Participants list</string>
-    <string name="Request_joining">Request joining</string>
+    <string name="Request_joining">Request to join</string>
     <string name="task_title">Task title</string>
     <string name="task_description">Task description</string>
     <string name="pending">PENDING</string>
@@ -39,5 +39,5 @@
     <string name="active_tasks">Active tasks</string>
     <string name="pending_tasks">Pending tasks</string>
     <string name="in_progress_tasks">In progress tasks</string>
-    <string name="done_tasks">Done Tasks</string>
+    <string name="done_tasks">Completed tasks</string>
 </resources>

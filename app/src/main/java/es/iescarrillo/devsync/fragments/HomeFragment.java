@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
      */
     private void loadHomeData() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            Toast.makeText(getContext(), "Sesión no válida", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Invalid session", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -109,15 +109,15 @@ public class HomeFragment extends Fragment {
                 User user = snapshot.getValue(User.class);
 
                 if (user != null && user.getName() != null) {
-                    tvHomeWelcome.setText("Bienvenido, " + user.getName());
+                    tvHomeWelcome.setText("Welcome, " + user.getName());
                 } else {
-                    tvHomeWelcome.setText("Bienvenido");
+                    tvHomeWelcome.setText("Welcome");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar usuario", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading user", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -142,12 +142,12 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                tvHomeProjects.setText("Proyectos: " + totalProjects);
+                tvHomeProjects.setText("Projects: " + totalProjects);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar proyectos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading projects", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -165,12 +165,12 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int totalRequests = (int) snapshot.getChildrenCount();
-                        tvHomeRequests.setText("Solicitudes: " + totalRequests);
+                        tvHomeRequests.setText("Requests: " + totalRequests);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error al cargar solicitudes", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -214,7 +214,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error al cargar tareas", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
             }
         });
     }

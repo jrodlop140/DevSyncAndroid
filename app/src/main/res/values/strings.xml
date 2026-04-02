@@ -21,4 +21,7 @@
     <string name="email">Email</string>
     <string name="skills">Skills</string>
     <string name="log_out">Log out</string>
+    <string name="change_photo">Change photo</string>
+    <string name="edit_skills">Edit skills</string>
+    <string name="profile_photo">Profile photo</string>
 </resources>

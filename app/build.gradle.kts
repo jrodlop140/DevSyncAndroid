@@ -58,4 +58,6 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     // Módulo Firebase Authentication
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("com.google.firebase:firebase-storage")
 }

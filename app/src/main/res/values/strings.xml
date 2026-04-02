@@ -26,4 +26,18 @@
     <string name="profile_photo">Profile photo</string>
     <string name="date">Date</string>
     <string name="project_name">Project name</string>
+    <string name="welcome">Welcome</string>
+    <string name="projects_0">Projects: 0</string>
+    <string name="requests_0">Requests: 0</string>
+    <string name="assigned_tasks_0">Assigned tasks: 0</string>
+    <string name="pending_tasks_0">Pending tasks: 0</string>
+    <string name="in_progress_tasks_0">In progress tasks: 0</string>
+    <string name="tasks_done_0">Tasks done: 0</string>
+    <string name="projects">Projects</string>
+    <string name="_0">0</string>
+    <string name="requests">Requests</string>
+    <string name="active_tasks">Active tasks</string>
+    <string name="pending_tasks">Pending tasks</string>
+    <string name="in_progress_tasks">In progress tasks</string>
+    <string name="done_tasks">Done Tasks</string>
 </resources>

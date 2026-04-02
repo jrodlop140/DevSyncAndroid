@@ -18,4 +18,7 @@
     <string name="task_description">Task description</string>
     <string name="pending">PENDING</string>
     <string name="action">Action</string>
+    <string name="email">Email</string>
+    <string name="skills">Skills</string>
+    <string name="log_out">Log out</string>
 </resources>

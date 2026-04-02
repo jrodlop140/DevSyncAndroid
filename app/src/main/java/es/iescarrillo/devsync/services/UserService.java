@@ -58,4 +58,14 @@ public class UserService {
     public DatabaseReference getAllUsers() {
         return databaseReference;
     }
+
+    /**
+     * Obtiene una referencia a un usuario específico de la base de datos.
+     *
+     * @param userId ID del usuario a obtener.
+     * @return Referencia al usuario.
+     */
+    public DatabaseReference getUserById(String userId) {
+        return databaseReference.child(userId);
+    }
 }

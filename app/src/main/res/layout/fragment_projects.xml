@@ -5,7 +5,10 @@
     android:id="@+id/rvProjects"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_page"
+    android:clipToPadding="false"
     android:padding="16dp"
+    android:paddingBottom="24dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".fragments.ProjectsFragment"
     tools:listitem="@layout/item_project" />

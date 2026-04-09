@@ -6,17 +6,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import es.iescarrillo.devsync.R;
+import es.iescarrillo.devsync.enums.ProjectStatus;
 import es.iescarrillo.devsync.models.Project;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
-    private List<Project> projectList;
-    private OnProjectClickListener listener;
+    private final List<Project> projectList;
+    private final OnProjectClickListener listener;
 
     public interface OnProjectClickListener {
         void onProjectClick(Project project);
@@ -44,6 +46,18 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
         if (project.getStatus() != null) {
             holder.tvProjectStatus.setText(project.getStatus().name());
+
+            if (project.getStatus() == ProjectStatus.ACTIVE) {
+                holder.tvProjectStatus.setBackgroundResource(R.drawable.bg_chip_blue);
+                holder.tvProjectStatus.setTextColor(
+                        ContextCompat.getColor(holder.itemView.getContext(), R.color.primary_700)
+                );
+            } else {
+                holder.tvProjectStatus.setBackgroundResource(R.drawable.bg_chip_red);
+                holder.tvProjectStatus.setTextColor(
+                        ContextCompat.getColor(holder.itemView.getContext(), R.color.danger_600)
+                );
+            }
         } else {
             holder.tvProjectStatus.setText("");
         }

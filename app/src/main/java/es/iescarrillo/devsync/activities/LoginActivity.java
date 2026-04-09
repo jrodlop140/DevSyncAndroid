@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
     // Componentes de la vista //
     private EditText etEmailLogin, etPasswordLogin;
-    private Button btnLogin, btnGoRegister;
+    private Button btnLogin;
+
+    private TextView tvGoToSignup;
 
     // Servicios //
     private AuthService authService;
@@ -42,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmailLogin = findViewById(R.id.etEmailLogin);
         etPasswordLogin = findViewById(R.id.etPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
-        btnGoRegister = findViewById(R.id.btnGoRegister);
+        tvGoToSignup = findViewById(R.id.tvGoToSignup);
     }
 
     /**
@@ -58,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initializeListeners() {
         btnLogin.setOnClickListener(v -> loginUser());
 
-        btnGoRegister.setOnClickListener(v -> {
+        tvGoToSignup.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });

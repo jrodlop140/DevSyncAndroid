@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,26 +17,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:textSize="24sp"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/quick_summary_of_your_activity_in_devsync"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/projects"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -44,7 +59,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/primary_600"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -52,19 +69,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/requests"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -74,7 +95,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/primary_600"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -82,19 +105,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/active_tasks"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -104,7 +131,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/primary_600"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -112,19 +141,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pending_tasks"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -134,7 +167,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/warning_700"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -142,19 +177,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/in_progress_tasks"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -164,7 +203,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/primary_600"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -172,20 +213,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:strokeColor="@color/border_soft"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/done_tasks"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -195,7 +240,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/_0"
-                    android:textSize="22sp" />
+                    android:textColor="@color/success_600"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

@@ -45,16 +45,19 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             holder.tvState.setText(request.getState().name());
 
             if (request.getState() == RequestState.PENDING) {
+                holder.tvState.setBackgroundResource(R.drawable.bg_chip_yellow);
                 holder.tvState.setTextColor(
-                        ContextCompat.getColor(holder.itemView.getContext(), android.R.color.holo_orange_dark)
+                        ContextCompat.getColor(holder.itemView.getContext(), R.color.warning_700)
                 );
             } else if (request.getState() == RequestState.ACCEPTED) {
+                holder.tvState.setBackgroundResource(R.drawable.bg_chip_green);
                 holder.tvState.setTextColor(
-                        ContextCompat.getColor(holder.itemView.getContext(), android.R.color.holo_green_dark)
+                        ContextCompat.getColor(holder.itemView.getContext(), R.color.success_600)
                 );
             } else if (request.getState() == RequestState.REJECTED) {
+                holder.tvState.setBackgroundResource(R.drawable.bg_chip_red);
                 holder.tvState.setTextColor(
-                        ContextCompat.getColor(holder.itemView.getContext(), android.R.color.holo_red_dark)
+                        ContextCompat.getColor(holder.itemView.getContext(), R.color.danger_600)
                 );
             }
         } else {
@@ -79,21 +82,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         }
     }
 
-    /**
-     * Método auxiliar para formatear la fecha de la solicitud.
-     *
-     * @param timestampString Fecha en formato timestamp.
-     * @return Retorna la fecha formateada.
-     */
     private String formatDate(String timestampString) {
         try {
             long timestamp = Long.parseLong(timestampString);
-
             java.text.SimpleDateFormat sdf =
                     new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault());
-
             return sdf.format(new java.util.Date(timestamp));
-
         } catch (Exception e) {
             return "";
         }

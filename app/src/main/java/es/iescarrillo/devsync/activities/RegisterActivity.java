@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,9 @@ import es.iescarrillo.devsync.services.UserService;
 public class RegisterActivity extends AppCompatActivity {
     // Componentes de la vista //
     private EditText etName, etEmail, etPassword, etConfirmPassword;
-    private Button btnRegister, btnGoLogin;
+    private Button btnRegister;
+
+    private TextView tvGoToLogin;
 
     // Servicios //
     private AuthService authService;
@@ -46,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfirmPasswordRegister);
 
         btnRegister = findViewById(R.id.btnRegister);
-        btnGoLogin = findViewById(R.id.btnGoLogin);
+        tvGoToLogin = findViewById(R.id.tvGoToLogin);
     }
 
     // Inicializa los servicios //
@@ -59,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void initializeListeners() {
         btnRegister.setOnClickListener(v -> registerUser());
 
-        btnGoLogin.setOnClickListener(v -> {
+        tvGoToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

@@ -2,7 +2,39 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="task_pending">#F57C00</color>
-    <color name="task_in_progress">#1976D2</color>
-    <color name="task_done">#388E3C</color>
+
+    <color name="bg_page">#F3F6FB</color>
+    <color name="bg_surface">#FFFFFFFF</color>
+    <color name="bg_surface_muted">#FFF8FAFC</color>
+    <color name="border_soft">#FFE5E7EB</color>
+
+    <color name="text_primary">#FF0F172A</color>
+    <color name="text_secondary">#FF64748B</color>
+    <color name="text_muted">#FF94A3B8</color>
+
+    <color name="primary_700">#FF1E3A8A</color>
+    <color name="primary_600">#FF2563EB</color>
+    <color name="primary_500">#FF3B82F6</color>
+    <color name="primary_100">#FFDBEAFE</color>
+
+    <color name="danger_600">#FFDC2626</color>
+    <color name="danger_100">#FFFEE2E2</color>
+    <color name="success_600">#FF15803D</color>
+    <color name="success_100">#FFDCFCE7</color>
+    <color name="warning_700">#FFA16207</color>
+    <color name="warning_100">#FFFEF3C7</color>
+
+    <color name="task_pending">#FFA16207</color>
+    <color name="task_in_progress">#FF2563EB</color>
+    <color name="task_done">#FF15803D</color>
+
+    <color name="nav_icon_tint">#FF64748B</color>
+    <color name="nav_icon_tint_selected">#FF2563EB</color>
+
+    <color name="primary">#2D6CDF</color>
+    <color name="primary_dark">#1B4DB1</color>
+    <color name="background">#FFFFFF</color>
+
+    <color name="secondary_text">#2D6CDF</color>
+    <color name="neutral_gray">#666666</color>
 </resources>

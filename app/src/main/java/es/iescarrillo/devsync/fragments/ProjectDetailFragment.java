@@ -40,7 +40,7 @@ import es.iescarrillo.devsync.services.UserService;
 public class ProjectDetailFragment extends Fragment {
 
     // Componentes de la interfaz
-    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies, tvProjectParticipants, tvProjectParticipantsNames;
+    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies, tvProjectParticipants, tvProjectParticipantsNames, tvProjectTasksAccessMessage;
     private Button btnJoinProject;
     private RecyclerView rvProjectTasks;
     private TaskAdapter taskAdapter;
@@ -89,6 +89,7 @@ public class ProjectDetailFragment extends Fragment {
         tvProjectParticipants = view.findViewById(R.id.tvDetailProjectParticipants);
         tvProjectParticipantsNames = view.findViewById(R.id.tvDetailProjectParticipantsNames);
         rvProjectTasks = view.findViewById(R.id.rvProjectTasks);
+        tvProjectTasksAccessMessage = view.findViewById(R.id.tvProjectTasksAccessMessage);
     }
 
     /**
@@ -262,8 +263,18 @@ public class ProjectDetailFragment extends Fragment {
 
                     // Cargamos los nombres de los participantes
                     loadParticipantNames(project);
-                    // Cargamos las tareas del proyecto
-                    loadProjectTasks();
+
+                    // Solo el creador o un participante pueden ver las tareas del proyecto
+                    if (isCreator || isParticipant) {
+                        rvProjectTasks.setVisibility(View.VISIBLE);
+                        tvProjectTasksAccessMessage.setVisibility(View.GONE);
+                        loadProjectTasks();
+                    } else {
+                        taskList.clear();
+                        taskAdapter.notifyDataSetChanged();
+                        rvProjectTasks.setVisibility(View.GONE);
+                        tvProjectTasksAccessMessage.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     Toast.makeText(getContext(), "Project not found", Toast.LENGTH_LONG).show();
                 }

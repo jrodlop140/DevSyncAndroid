@@ -40,7 +40,9 @@ import es.iescarrillo.devsync.services.UserService;
 public class ProjectDetailFragment extends Fragment {
 
     // Componentes de la interfaz
-    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator, tvProjectTechnologies, tvProjectParticipants, tvProjectParticipantsNames, tvProjectTasksAccessMessage;
+    private TextView tvProjectName, tvProjectDescription, tvProjectStatus, tvProjectCreator,
+            tvProjectTechnologies, tvProjectParticipants, tvProjectParticipantsNames,
+            tvProjectTasksAccessMessage;
     private Button btnJoinProject;
     private RecyclerView rvProjectTasks;
     private TaskAdapter taskAdapter;
@@ -120,7 +122,6 @@ public class ProjectDetailFragment extends Fragment {
         btnJoinProject.setOnClickListener(v -> checkIfRequestExistsAndCreate());
     }
 
-
     /**
      * Obtiene los datos recibidos por argumentos.
      */
@@ -133,6 +134,7 @@ public class ProjectDetailFragment extends Fragment {
     /**
      * Comprueba si ya existe una solicitud para el usuario actual y el proyecto.
      * Si no existe, crea una nueva.
+     * Si existe pero está REJECTED, permite volver a solicitar.
      */
     private void checkIfRequestExistsAndCreate() {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -141,12 +143,33 @@ public class ProjectDetailFragment extends Fragment {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
+
+                        if (!snapshot.exists()) {
+                            createJoinRequest(currentUserId);
+                            return;
+                        }
+
+                        Request request = snapshot.getValue(Request.class);
+
+                        if (request == null || request.getState() == null) {
+                            createJoinRequest(currentUserId);
+                            return;
+                        }
+
+                        if (request.getState() == RequestState.REJECTED) {
+                            request.setState(RequestState.PENDING);
+                            request.setRequestDate(String.valueOf(System.currentTimeMillis()));
+                            request.setCreatedAt(System.currentTimeMillis());
+
+                            requestService.saveRequest(request);
+
+                            Toast.makeText(getContext(), "Request sent", Toast.LENGTH_LONG).show();
+                            btnJoinProject.setEnabled(false);
+                            btnJoinProject.setVisibility(View.GONE);
+                        } else {
                             Toast.makeText(getContext(),
                                     "You have already sent a request for this project",
                                     Toast.LENGTH_LONG).show();
-                        } else {
-                            createJoinRequest(currentUserId);
                         }
                     }
 
@@ -176,6 +199,7 @@ public class ProjectDetailFragment extends Fragment {
 
         Toast.makeText(getContext(), "Request sent", Toast.LENGTH_LONG).show();
         btnJoinProject.setEnabled(false);
+        btnJoinProject.setVisibility(View.GONE);
     }
 
     /**
@@ -250,7 +274,7 @@ public class ProjectDetailFragment extends Fragment {
                     if (isCreator || isParticipant) {
                         btnJoinProject.setVisibility(View.GONE);
                     } else {
-                        btnJoinProject.setVisibility(View.VISIBLE);
+                        btnJoinProject.setVisibility(View.GONE);
                         checkIfRequestAlreadyExists(currentUserId);
                     }
 
@@ -332,8 +356,8 @@ public class ProjectDetailFragment extends Fragment {
     }
 
     /**
-     * Comprueba si el usuario actual ya tiene una solicitud enviada para este proyecto
-     * y deshabilita el botón si ya existe.
+     * Comprueba si el usuario actual ya tiene una solicitud enviada para este proyecto.
+     * Si está REJECTED, vuelve a mostrar el botón.
      *
      * @param currentUserId Id del usuario actual.
      */
@@ -342,7 +366,28 @@ public class ProjectDetailFragment extends Fragment {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        btnJoinProject.setEnabled(!snapshot.exists());
+
+                        if (!snapshot.exists()) {
+                            btnJoinProject.setVisibility(View.VISIBLE);
+                            btnJoinProject.setEnabled(true);
+                            return;
+                        }
+
+                        Request request = snapshot.getValue(Request.class);
+
+                        if (request == null || request.getState() == null) {
+                            btnJoinProject.setVisibility(View.VISIBLE);
+                            btnJoinProject.setEnabled(true);
+                            return;
+                        }
+
+                        if (request.getState() == RequestState.REJECTED) {
+                            btnJoinProject.setVisibility(View.VISIBLE);
+                            btnJoinProject.setEnabled(true);
+                        } else {
+                            btnJoinProject.setVisibility(View.GONE);
+                            btnJoinProject.setEnabled(false);
+                        }
                     }
 
                     @Override

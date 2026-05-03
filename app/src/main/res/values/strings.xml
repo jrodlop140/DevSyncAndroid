@@ -50,5 +50,5 @@
     <string name="already_have_an_account_login">Already have an account? Login</string>
     <string name="quick_summary_of_your_activity_in_devsync">Quick summary of your activity in DevSync</string>
     <string name="tasks">Tasks</string>
-    <string name="solo_los_participantes_del_proyecto_pueden_ver_sus_tareas">Solo los participantes del proyecto pueden ver sus tareas.</string>
+    <string name="only_project_participants_can_view_the_tasks">Only project participants can view the tasks.</string>
 </resources>

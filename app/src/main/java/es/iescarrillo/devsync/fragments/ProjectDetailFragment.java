@@ -249,7 +249,26 @@ public class ProjectDetailFragment extends Fragment {
 
                     tvProjectName.setText(project.getName());
                     tvProjectDescription.setText(project.getDescription());
-                    tvProjectCreator.setText(project.getCreator());
+
+                    // Obtener el nombre del creador en lugar del ID
+                    if (project.getCreator() != null) {
+                        userService.getUserById(project.getCreator()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                                User creator = userSnapshot.getValue(User.class);
+                                if (creator != null && creator.getName() != null) {
+                                    tvProjectCreator.setText("Creator: " + creator.getName());
+                                } else {
+                                    tvProjectCreator.setText("Creator: " + project.getCreator());
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                tvProjectCreator.setText("Creator: " + project.getCreator());
+                            }
+                        });
+                    }
 
                     if (project.getStatus() != null) {
                         tvProjectStatus.setText(project.getStatus().name());

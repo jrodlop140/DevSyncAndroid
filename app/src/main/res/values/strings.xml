@@ -42,7 +42,7 @@
     <string name="done_tasks">Completed tasks</string>
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
-    <string name="don_t_have_an_account_login">Don\'t have an account? Login</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
     <string name="create_an_account_to_use_devsync_and_collaborate">Create an account to use DevSync and collaborate</string>
     <string name="sign_up">Sign up</string>
     <string name="devsync">DevSync</string>

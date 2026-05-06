@@ -175,9 +175,11 @@ public class ProjectDetailFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(),
-                                "Error checking the request",
-                                Toast.LENGTH_LONG).show();
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                            Toast.makeText(getContext(),
+                                    "Error checking the request",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }
@@ -225,7 +227,9 @@ public class ProjectDetailFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -265,7 +269,9 @@ public class ProjectDetailFragment extends Fragment {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                tvProjectCreator.setText("Creator: " + project.getCreator());
+                                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                                    tvProjectCreator.setText("Creator: " + project.getCreator());
+                                }
                             }
                         });
                     }
@@ -325,7 +331,9 @@ public class ProjectDetailFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -369,7 +377,9 @@ public class ProjectDetailFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading participants", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading participants", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -411,9 +421,11 @@ public class ProjectDetailFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(),
-                                "Error checking existing request",
-                                Toast.LENGTH_LONG).show();
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                            Toast.makeText(getContext(),
+                                    "Error checking existing request",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }

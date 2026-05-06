@@ -118,7 +118,9 @@ public class RequestsFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                            Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }
@@ -152,7 +154,9 @@ public class RequestsFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                            Toast.makeText(getContext(), "Error loading project", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }

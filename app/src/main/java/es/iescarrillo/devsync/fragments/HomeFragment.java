@@ -117,7 +117,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading user", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading user", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -147,7 +149,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading projects", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading projects", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -170,7 +174,9 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
+                        if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                            Toast.makeText(getContext(), "Error loading requests", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }
@@ -214,7 +220,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    Toast.makeText(getContext(), "Error loading tasks", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

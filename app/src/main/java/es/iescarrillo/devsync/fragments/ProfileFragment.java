@@ -210,7 +210,9 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                showToastSafely("Error loading user", Toast.LENGTH_LONG);
+                if (FirebaseAuth.getInstance().getCurrentUser() != null && isAdded()) {
+                    showToastSafely("Error loading user", Toast.LENGTH_LONG);
+                }
             }
         });
     }

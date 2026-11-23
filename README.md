@@ -29,13 +29,14 @@ Puedes iniciar sesión tanto en esta aplicación Android como en el panel web de
 * **Interfaz de Usuario:** XML (Diseño nativo adaptado a dispositivos móviles)
 * **Conectividad:** Consumo de APIs RESTful
 * **Control de Versiones:** Git & GitHub
+* 
+#### 📦 Descargar e Instalar APK (Android)
 
-#### 📸 Capturas de Pantalla
+Si quieres probar la aplicación directamente en un dispositivo Android sin necesidad de compilar el proyecto en Android Studio: 
 
-*(Arrastra aquí tus capturas de la app en el emulador o móvil al editar este archivo en GitHub)* 
-
-* **Pantalla de Inicio de Sesión**
-* **Listado de Proyectos y Gestión de Tareas**
+1. Ve a la sección de [**Releases del repositorio**](/url?sa=i&source=web&rct=j&url=https://github.com/jrodlop140/DevSyncAndroid/releases&ved=2ahUKEwikz4i0jJ-YAxWchf0HHUPpEf4Qy_kOegYIAggQEAw&opi=89978449&cd&psig=AOvVaw0P9bTibVxwKa297FQiC2-S&ust=1795557858942000) y descarga el archivo DevSync.apk de la última versión (v1.0.0).
+2. Ábrelo en tu móvil Android (acepta la instalación desde orígenes desconocidos si el sistema te lo solicita).
+3. Inicia sesión con la cuenta demo (demo@devsyncweb.com / 123456) para probar la sincronización en tiempo real con [devsyncweb.com](/url?sa=i&source=web&rct=j&url=https://devsyncweb.com&ved=2ahUKEwikz4i0jJ-YAxWchf0HHUPpEf4Qy_kOegYIAggQEBc&opi=89978449&cd&psig=AOvVaw0P9bTibVxwKa297FQiC2-S&ust=1795557858942000).
 
 #### ⚙️ Instalación y Ejecución en Local
 
